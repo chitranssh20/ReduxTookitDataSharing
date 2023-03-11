@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
-import { credentialReducer } from './dataReducer'
+import  credentialReducer  from './dataReducer'
 
 const store = configureStore({
     reducer: {
@@ -7,4 +7,7 @@ const store = configureStore({
     }
 })
 
+store.subscribe(() => {
+    console.log(store.getState());
+  });
 export default store

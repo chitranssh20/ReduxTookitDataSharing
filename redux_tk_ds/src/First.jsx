@@ -1,18 +1,15 @@
 import React from 'react'
 import { useState } from 'react';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { update } from './dataReducer';
 
 const First = () => {
     const dispatch = useDispatch();
-
+    const value = useSelector(state => state.datareducer.a);
+    console.log(value);
     const changeValue = (value) =>{
-        dispatch({
-            type: "update",
-            a: value
-
-        })
+        dispatch(update(value))
     }
-
     const [checkValue, setcheckValue] = useState('')
     const submitInput = (e) =>{
         e.preventDefault();
@@ -34,4 +31,4 @@ const First = () => {
   )
 }
 
-export default First
+export default React.memo(First)

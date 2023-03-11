@@ -1,13 +1,18 @@
-import {createReducer} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
 const credentials = {
     a : 'romanOne',
 }
 
-export const credentialReducer = createReducer(credentials, {
-    update: (state, action) =>{
-        state.a = action.a;
-        console.log('state', state);
-        return state
+const credentialReducer = createSlice({
+    name: 'datareducer',
+    initialState: credentials,
+    reducers: {
+
+        update: (state, action) =>{
+            state.a = action.payload;
+        }
     }
-})
+});
+export const {update} =  credentialReducer.actions; 
+export default credentialReducer.reducer
