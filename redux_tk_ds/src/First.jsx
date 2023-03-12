@@ -1,34 +1,36 @@
-import React from 'react'
-import { useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import { update } from './dataReducer';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateValue } from "./dataSlice";
+import store from "./store";
 
 const First = () => {
-    const dispatch = useDispatch();
-    const value = useSelector(state => state.datareducer.a);
-    console.log(value);
-    const changeValue = (value) =>{
-        dispatch(update(value))
-    }
-    const [checkValue, setcheckValue] = useState('')
-    const submitInput = (e) =>{
-        e.preventDefault();
-        changeValue(checkValue)
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
 
-    }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('initial', store.getState());
+    dispatch(updateValue(inputValue));
+    console.log('initial', store.getState());
+    setInputValue("");
+  };
 
   return (
-    <>
-    <div>First</div>
-    <form >
+    <div>
+      <h2>First Component</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="inputValue">Update Value:</label>
+        <input
+          type="text"
+          id="inputValue"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
 
-    <label htmlFor='check' ></label>
-    <input type='text' id='check' name='check' value={checkValue} onChange= {(e)=> setcheckValue(e.target.value)}  ></input>
-    <button type='submit' onClick={(e)=> submitInput(e)} >Submit </button>
-    </form>
-
-    </>
-  )
-}
-
-export default React.memo(First)
+export default First;

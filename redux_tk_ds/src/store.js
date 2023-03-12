@@ -1,13 +1,10 @@
-import {configureStore} from '@reduxjs/toolkit'
-import  credentialReducer  from './dataReducer'
+import { configureStore } from "@reduxjs/toolkit";
+import dataSlice from "./dataSlice";
 
 const store = configureStore({
-    reducer: {
-        datareducer: credentialReducer
-    }
+  reducer: {
+    data: dataSlice
+  },
 })
 
-store.subscribe(() => {
-    console.log(store.getState());
-  });
 export default store

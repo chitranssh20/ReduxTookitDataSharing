@@ -1,29 +1,15 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { connect } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Second = () => {
-
-  const selectA = state => state.datareducer.a;
-  const value = useSelector(selectA);
-  console.log(value);
-  // const [dummyState, setDummyState] = React.useState(0);
-
-  const [displayValue, setDisplayValue] = React.useState(value); 
-  React.useEffect(() => {
-    console.log(value);
-    setDisplayValue(value);
-  }, [value]);
+  const value = useSelector((state) => state.data.value);
 
   return (
-    <>
-      <div>Second</div>
-     <h2>  {displayValue} </h2>
-    </>
+    <div>
+      <h2>Second Component</h2>
+      <p>Current Value: {value}</p>
+    </div>
   );
 };
-const mapStateToProps = (state) => ({
-  value: state.datareducer.a,
-});
 
-export default connect(mapStateToProps)(Second);
+export default Second;
