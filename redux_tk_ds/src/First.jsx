@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateValue } from "./dataSlice";
 import store from "./store";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const First = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
 
@@ -12,8 +13,10 @@ const First = () => {
     e.preventDefault();
     console.log('initial', store.getState());
     dispatch(updateValue(inputValue));
-    console.log('initial', store.getState());
+    console.log('final', store.getState());
     setInputValue("");
+    navigate('/second')
+    // window.open('/second','_blank')    
   };
 
   return (
@@ -29,6 +32,7 @@ const First = () => {
         />
         <button type="submit">Submit</button>
       </form>
+      <button onClick={(e)=> navigate('/second')}>Go to second</button>
     </div>
   );
 };

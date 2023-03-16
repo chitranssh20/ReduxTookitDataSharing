@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { withReduxStateSync } from 'redux-state-sync';
 
 const initialState = {
   value: 0,
@@ -9,6 +10,8 @@ const dataSlice = createSlice({
   initialState,
   reducers: {
     updateValue: (state, action) => {
+      console.log('state', state);
+      console.log('action', action);
       state.value = action.payload;
     },
   },
@@ -17,4 +20,4 @@ const dataSlice = createSlice({
 export const { updateValue } = dataSlice.actions;
 
 console.log('dataSlice', dataSlice);
-export default dataSlice.reducer;
+export default withReduxStateSync(dataSlice.reducer);

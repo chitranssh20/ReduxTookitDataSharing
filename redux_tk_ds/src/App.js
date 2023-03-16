@@ -7,8 +7,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/first' element= {<First />} ></Route>
-        <Route path='/second' element= {<Second />} ></Route>
+        <Route path='/first' element= {<> <First  key={'route1'} /> </>} ></Route>
+        <Route path='/second' element= {<><Second  key={'route2'} /></>} ></Route>
       </Routes>
     </BrowserRouter>
   )
